@@ -7,7 +7,7 @@ const AppStack = createStackNavigator();
 
 export function AppRoutes(){
     return(
-        <AppStack.Navigator>
+        <AppStack.Navigator initialRouteName="Index">
             <AppStack.Screen name="Index" component={SignedInScreen}/>
         </AppStack.Navigator>
     );
