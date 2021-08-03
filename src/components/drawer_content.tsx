@@ -5,9 +5,8 @@ import {
     DrawerItem
 } from '@react-navigation/drawer'
 
-import settings from './src/icons.settings_icon.svg'
 import Svg from 'react-native-svg'
-import { UserContext } from './user_context'
+import { UserContext } from '../contexts/user_context'
 
 
 export function DrawerContent(props) {
@@ -22,7 +21,6 @@ export function DrawerContent(props) {
         <View style={{flex:1}}>
             
             <DrawerContentScrollView {...props}>
-                <View style={}></View>
                 <DrawerItem
                     label="Home"
                     onPress={() => {props.navigation.navigate("Home")}}

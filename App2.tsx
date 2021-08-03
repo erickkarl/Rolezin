@@ -1,25 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useContext, useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserContext } from './src/contexts/user_context';
-import { AuthProvider } from './src/contexts/auth_context';
 import Svg, { Path } from "react-native-svg"
 
-//import { DrawerRoutes } from './src/components/drawer_content';
+import { DrawerRoutes } from './src/components/drawer_content';
 
 import { HomeScreen } from './src/screens/home';
 import { HistoryScreen } from './src/screens/history';
 import { SettingsScreen } from './src/screens/settings'
 
-import { Routes } from './src/routes';
-
-//const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-  /*
+
   const [isSignedIn, setIsSignedIn] = React.useState<Boolean>(false)
   const [userInfo, setUserInfo] = React.useState<Google.GoogleUser|undefined|null>()
 
@@ -72,15 +69,6 @@ export default function App() {
         
       )
     );
-    */
-
-  return(
-      <NavigationContainer>
-        <AuthProvider>
-          <Routes/>
-        </AuthProvider>
-      </NavigationContainer>
-  );
 }
 
 
