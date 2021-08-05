@@ -4,37 +4,46 @@ import {
     DrawerContentScrollView,
     DrawerItem
 } from '@react-navigation/drawer'
+import { Ionicons, Octicons } from '@expo/vector-icons'
 
-import Svg from 'react-native-svg'
 import { UserContext } from '../contexts/user_context'
+import { AuthContext } from '../contexts/auth_context'
 
 
 export function DrawerContent(props) {
 
-    const userInfo = React.useContext(UserContext);
+    const { user, signed } = useContext(AuthContext);
 
     const handleCi = () => {
-        console.log(userInfo);
+        console.log(user);
       }
 
     return(
         <View style={{flex:1}}>
-            
             <DrawerContentScrollView {...props}>
                 <DrawerItem
+                    icon={() => (<Ionicons name="home" size={24} color="black"/>)}
                     label="Home"
                     onPress={() => {props.navigation.navigate("Home")}}
                 />
                 <DrawerItem
+                    icon={() => (<Ionicons name="list" size={24} color="black"/>)}
                     label="History"
                     onPress={() => {props.navigation.navigate("History")}}
                 />
                 <DrawerItem
+                    icon={() => (<Ionicons name="settings" size={24} color="black"/>)}
                     label="Settings"
                     onPress={() => {props.navigation.navigate("Settings")}}
                 />
+                <DrawerItem
+                    icon={() => (<Ionicons name="qr-code-outline" size={24} color="black"/>)}
+                    label="Scan"
+                    onPress={() => {props.navigation.navigate("Scan")}}
+                />
             </DrawerContentScrollView>
             <DrawerItem
+                icon={() => (<Octicons name="sign-out" size={24} color="black"/>)}
                 label="Sign Out"
                 onPress={handleCi}
                 />
