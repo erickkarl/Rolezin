@@ -6,9 +6,7 @@ import {
 } from '@react-navigation/drawer'
 import { Ionicons, Octicons } from '@expo/vector-icons'
 
-import { UserContext } from '../contexts/user_context'
 import { AuthContext } from '../contexts/auth_context'
-
 
 export function DrawerContent(props) {
 
