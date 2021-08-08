@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, StyleSheet, Text, Button } from 'react-native'
+import { ScrapContext } from '../contexts/scrap_context';
 
 export function SettingsScreen({navigation}){
 
+    const {doScrap} = useContext(ScrapContext)
     const handleTest = () =>{
-        console.log("This is a test");
+        //doScrap('https://www.google.com/');
     }
     return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
