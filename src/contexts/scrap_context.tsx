@@ -1,18 +1,19 @@
 import React, {createContext, useState} from "react";
 import axios from 'axios'
+import { useContext } from "react";
 
 interface ScrapContentData {
     item_list:object;
-    fTest(url:string): Promise<void>;
+    fTest:(url:string)=>Promise<void>;
 }
 
-export const ScrapContext = createContext<ScrapContentData>({} as ScrapContentData);
+const ScrapContext = createContext<ScrapContentData>({} as ScrapContentData);
 
 export function ScrapProvider({children}) {
 
     const [itemList,setItemList] = useState<object|undefined>({wat: "lol"});
     
-    const fTest = (url:string) => {
+    function fTest(url:string){
         console.log("doing scraping...");
         axios.get(url)
             .then((response) => {
@@ -27,4 +28,9 @@ export function ScrapProvider({children}) {
             {children}
         </ScrapContext.Provider>
     );
+}
+
+export function useScrap(): ScrapContentData{
+  const context = useContext(ScrapContext);
+  return context;
 }
