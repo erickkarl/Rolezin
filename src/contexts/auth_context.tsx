@@ -1,18 +1,30 @@
-import React,{ createContext } from "react";
+import React,{ createContext, useState } from "react";
 import * as Google from 'expo-google-app-auth';
+import axios from 'axios'
 
 interface AuthContextData {
     signed: boolean;
     user: object;
     signIn(): Promise<void>;
+    fTest(url:string): Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export function AuthProvider({children}){
 
-    const [isSignedIn, setIsSignedIn] = React.useState<Boolean>(false);
-    const [userInfo, setUserInfo] = React.useState<Google.GoogleUser|null>();
+    const [isSignedIn, setIsSignedIn] = useState<Boolean>(false);
+    const [userInfo, setUserInfo] = useState<Google.GoogleUser|null>();
+
+    const fTest = (url:string) => {
+        console.log("doing scraping...");
+        axios.get(url)
+            .then((response) => {
+                console.log(response)
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
 
     const signIn = () => {
         const config = {
@@ -38,7 +50,7 @@ export function AuthProvider({children}){
     }
 
     return(
-        <AuthContext.Provider value={{signed: isSignedIn, user:userInfo, signIn}}>
+        <AuthContext.Provider value={{signed: isSignedIn, user:userInfo, signIn, fTest}}>
             {children}
         </AuthContext.Provider>
     );

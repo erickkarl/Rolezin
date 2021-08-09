@@ -3,15 +3,16 @@ import axios from 'axios'
 
 interface ScrapContentData {
     item_list:object;
-    doScrap(url:string):Promise<void>;
+    fTest(url:string): Promise<void>;
 }
 
-export const ScrapContext = createContext<ScrapContentData>({} as ScrapContentData)
+export const ScrapContext = createContext<ScrapContentData>({} as ScrapContentData);
 
-export function ScrapContent({children}) {
-    const [itemList,setItemList] = useState<object>();
+export function ScrapProvider({children}) {
+
+    const [itemList,setItemList] = useState<object|undefined>({wat: "lol"});
     
-    const doScrap = (url:string) => {
+    const fTest = (url:string) => {
         console.log("doing scraping...");
         axios.get(url)
             .then((response) => {
@@ -22,7 +23,7 @@ export function ScrapContent({children}) {
     }
 
     return(
-        <ScrapContext.Provider value={{item_list:itemList, doScrap}}>
+        <ScrapContext.Provider value={{item_list:itemList, fTest}}>
             {children}
         </ScrapContext.Provider>
     );
