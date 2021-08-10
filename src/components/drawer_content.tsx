@@ -10,10 +10,11 @@ import { AuthContext } from '../contexts/auth_context'
 
 export function DrawerContent(props) {
 
-    const { user, signed } = useContext(AuthContext);
+    const { user, signed, signOut } = useContext(AuthContext);
 
-    const handleCi = () => {
+    const handleSignOut = () => {
         console.log(user);
+        signOut();
       }
 
     return(
@@ -43,7 +44,7 @@ export function DrawerContent(props) {
             <DrawerItem
                 icon={() => (<Octicons name="sign-out" size={24} color="black"/>)}
                 label="Sign Out"
-                onPress={handleCi}
+                onPress={handleSignOut}
                 />
 
         </View>

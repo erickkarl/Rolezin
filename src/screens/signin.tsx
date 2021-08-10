@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-import { AuthContext } from '../contexts/auth_context';
+import { useAuth } from '../contexts/auth_context';
 
 export function SignInScreen() {
-    const { signed, signIn, user } = useContext(AuthContext);
+    const { signed, signIn, user } = useAuth();
 
     const handleGoogleSignIn = () => {
         signIn();
